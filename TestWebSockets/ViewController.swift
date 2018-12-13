@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, WebSocketDelegate {
+class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
     }
@@ -30,6 +30,15 @@ class ViewController: NSViewController, WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")
     }
+    
+    func websocketDidReceivePong(socket: WebSocketClient, data: Data?){
+        if (data != nil) {
+            print("Received pong: \(data!.count) Bytes")
+        }
+        else {
+            print("Received pong")
+        }
+    }
 
     var socket: WebSocket!
     var counterValue = 99
@@ -48,6 +57,7 @@ class ViewController: NSViewController, WebSocketDelegate {
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
+        socket.pongDelegate = self
         socket.connect()
     }
     
@@ -70,6 +80,11 @@ class ViewController: NSViewController, WebSocketDelegate {
         //data  = randomData(ofLength: Int(len))
     }
     
+    @IBAction func sendPing(_ sender: Any) {
+        let bytes = [UInt8](repeating: 0xAA, count: 20)
+        let pingdata = Data(bytes: bytes)
+        socket.write(ping: pingdata)
+    }
     
     @IBAction func disconnect(_ sender: Any) {
         if socket.isConnected {
