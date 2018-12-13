@@ -43,22 +43,40 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
     var socket: WebSocket!
     var counterValue = 99
     var data:Data = Data()
+    //var request = URLRequest(url: URL(string: "http://localhost:8080")!)
+    //var request = URLRequest(url: URL(string: "ws://demos.kaazing.com/echo")!)
+    //var request = URLRequest(url: URL(string: "wss://echo.websocket.org")!)
+    var hostString = "ws://demos.kaazing.com/echo"
+
     
     @IBOutlet weak var connectOutlet: NSButton!
     @IBOutlet weak var disconnectOutlet: NSButton!
+    @IBOutlet weak var sendTextOutlet: NSButton!
+    @IBOutlet weak var sendDataOutlet: NSButton!    
+    @IBOutlet weak var sendPingOutlet: NSButton!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var counter: NSTextField!
     @IBOutlet weak var slider: NSSlider!
+    @IBOutlet weak var hostLabel: NSTextField!
+    @IBOutlet weak var hostSelectPopup: NSPopUpButton!
     
     @IBAction func connect(_ sender: Any) {
-        //var request = URLRequest(url: URL(string: "http://localhost:8080")!)
-        var request = URLRequest(url: URL(string: "ws://demos.kaazing.com/echo")!)
-        //var request = URLRequest(url: URL(string: "wss://echo.websocket.org")!)
+
+        hostString = hostSelectPopup.title
+        hostLabel.stringValue = hostString
+        print (" Trying to connect to \(hostString)")
+        var request = URLRequest(url: URL(string: hostString)!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.pongDelegate = self
         socket.connect()
+        
+        connectOutlet.isEnabled = false
+        disconnectOutlet.isEnabled = true
+        sendTextOutlet.isEnabled = true
+        sendDataOutlet.isEnabled = true
+        sendPingOutlet.isEnabled = true
     }
     
     @IBAction func sendText(_ sender: Any) {
@@ -80,6 +98,11 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
         //data  = randomData(ofLength: Int(len))
     }
     
+    @IBAction func popUpAction(_ sender: Any) {
+        hostString = hostSelectPopup.title
+        hostLabel.stringValue = hostString
+    }
+    
     @IBAction func sendPing(_ sender: Any) {
         let bytes = [UInt8](repeating: 0xAA, count: 20)
         let pingdata = Data(bytes: bytes)
@@ -94,6 +117,11 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
             //sender.title = "Disconnect"
             socket.connect()
         }
+        connectOutlet.isEnabled = true
+        disconnectOutlet.isEnabled = false
+        sendTextOutlet.isEnabled = false
+        sendDataOutlet.isEnabled = false
+        sendPingOutlet.isEnabled = false
     }
     
     
@@ -101,8 +129,15 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        hostLabel.stringValue = ""
         textField.stringValue = "Enter Text here"
         counter.intValue = slider.intValue
+        
+        connectOutlet.isEnabled = true
+        disconnectOutlet.isEnabled = false
+        sendTextOutlet.isEnabled = false
+        sendDataOutlet.isEnabled = false
+        sendPingOutlet.isEnabled = false
     }
 
     override var representedObject: Any? {

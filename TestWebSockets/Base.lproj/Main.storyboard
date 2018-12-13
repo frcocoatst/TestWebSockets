@@ -800,12 +800,43 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lJ-aI-Jcw">
+                                <rect key="frame" x="123" y="226" width="340" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="ws://demos.kaazing.com/echo" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="FkM-MJ-yKI" id="MQz-Pb-ZOc">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="dXE-Lb-jjY">
+                                        <items>
+                                            <menuItem title="ws://demos.kaazing.com/echo" state="on" id="FkM-MJ-yKI"/>
+                                            <menuItem title="wss://echo.websocket.org" id="csN-NN-2x8"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="popUpAction:" target="XfG-lQ-9wD" id="yNR-WT-ta1"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZFf-hj-Jgz">
+                                <rect key="frame" x="125" y="22" width="337" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="sRq-oR-yEB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="connectOutlet" destination="T1q-ea-YE1" id="vvM-kF-k66"/>
                         <outlet property="counter" destination="Bb4-nD-enW" id="Zfn-HJ-ZIF"/>
                         <outlet property="disconnectOutlet" destination="HmI-zW-lVr" id="MEz-OF-sbA"/>
+                        <outlet property="hostLabel" destination="ZFf-hj-Jgz" id="Mdf-cz-pER"/>
+                        <outlet property="hostSelectPopup" destination="4lJ-aI-Jcw" id="qBV-GU-AQ3"/>
+                        <outlet property="sendDataOutlet" destination="Nuu-5g-Blj" id="gAL-uS-RQ7"/>
+                        <outlet property="sendPingOutlet" destination="yIn-6m-kAt" id="vMq-9r-lH2"/>
+                        <outlet property="sendTextOutlet" destination="jaI-jf-4IB" id="LUH-9C-DSm"/>
                         <outlet property="slider" destination="giU-2u-zxl" id="63b-F4-3Tp"/>
                         <outlet property="textField" destination="i64-sr-ivX" id="USn-WJ-KuM"/>
                     </connections>
