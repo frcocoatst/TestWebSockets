@@ -97,6 +97,7 @@ class ViewController: NSViewController, WebSocketDelegate {
     }
     
     public func randomData(ofLength length: Int) -> Data {
+        /*
         var bytes = [UInt8](repeating: 0, count: length)
         let status = SecRandomCopyBytes(kSecRandomDefault, length, &bytes)
         if status == errSecSuccess {
@@ -104,6 +105,9 @@ class ViewController: NSViewController, WebSocketDelegate {
         }
         //
         return Data(bytes: [255])
+        */
+        let bytes = [UInt8](repeating: 0x55, count: length)
+        return Data(bytes: bytes)
     }
 
 }

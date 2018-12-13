@@ -733,7 +733,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nuu-5g-Blj">
-                                <rect key="frame" x="14" y="157" width="109" height="32"/>
+                                <rect key="frame" x="14" y="156" width="109" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Send Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AUM-OL-ZLp">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -764,7 +764,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnx-Jj-8Fb">
-                                <rect key="frame" x="423" y="168" width="39" height="17"/>
+                                <rect key="frame" x="423" y="165" width="39" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Bytes" id="yxg-2Q-5Gi">
                                     <font key="font" metaFont="system"/>
@@ -773,7 +773,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="giU-2u-zxl">
-                                <rect key="frame" x="123" y="166" width="255" height="19"/>
+                                <rect key="frame" x="123" y="164" width="255" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="5000" doubleValue="2000" tickMarkPosition="above" sliderType="linear" id="Ogs-db-uBu"/>
                                 <connections>
@@ -781,7 +781,7 @@
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bb4-nD-enW">
-                                <rect key="frame" x="388" y="168" width="37" height="17"/>
+                                <rect key="frame" x="382" y="165" width="37" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="PH1-vp-Cec">
                                     <font key="font" metaFont="system"/>
