@@ -10,34 +10,47 @@ import Cocoa
 
 class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
+        logString = logString + "websocket is connected\n"
+        textView.string = logString
         print("websocket is connected")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let e = error as? WSError {
             print("websocket is disconnected: \(e.message)")
+            logString = logString + "websocket is disconnected: \(e.message)\n"
         } else if let e = error {
             print("websocket is disconnected: \(e.localizedDescription)")
+            logString = logString + "websocket is disconnected: \(e.localizedDescription)\n"
         } else {
             print("websocket disconnected")
+            logString = logString + "websocket is disconnected\n"
         }
+        textView.string = logString
     }
 
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("Received text: \(text)")
+        logString = logString + "Received text: \(text)\n"
+        textView.string = logString
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")
+        logString = logString + "Received data: \(data.count) Bytes\n"
+        textView.string = logString
     }
     
     func websocketDidReceivePong(socket: WebSocketClient, data: Data?){
         if (data != nil) {
             print("Received pong: \(data!.count) Bytes")
+            logString = logString + "Received pong: \(data!.count) Byte\n"
         }
         else {
             print("Received pong")
+            logString = logString + "Received pong"
         }
+        textView.string = logString
     }
 
     var socket: WebSocket!
@@ -47,8 +60,8 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
     //var request = URLRequest(url: URL(string: "ws://demos.kaazing.com/echo")!)
     //var request = URLRequest(url: URL(string: "wss://echo.websocket.org")!)
     var hostString = "ws://demos.kaazing.com/echo"
+    var logString = ">\n"
 
-    
     @IBOutlet weak var connectOutlet: NSButton!
     @IBOutlet weak var disconnectOutlet: NSButton!
     @IBOutlet weak var sendTextOutlet: NSButton!
@@ -59,6 +72,7 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
     @IBOutlet weak var slider: NSSlider!
     @IBOutlet weak var hostLabel: NSTextField!
     @IBOutlet weak var hostSelectPopup: NSPopUpButton!
+    @IBOutlet var textView: NSTextView!
     
     @IBAction func connect(_ sender: Any) {
 
@@ -138,6 +152,7 @@ class ViewController: NSViewController, WebSocketDelegate, WebSocketPongDelegate
         sendTextOutlet.isEnabled = false
         sendDataOutlet.isEnabled = false
         sendPingOutlet.isEnabled = false
+        textView.string = logString
     }
 
     override var representedObject: Any? {
